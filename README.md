@@ -1,87 +1,53 @@
-Pushing to Multiple Git Repos
+1. Git Remote hinzufügen
 -----------------------------
 
-If a project has to have multiple git repos (e.g. Bitbucket and
-Github) then it's better that they remain in sync.
+Zuerst definierst du einen Remote-Namen, den du verwenden möchtest (hier als origin bezeichnet), und fügst die erste URL hinzu:
 
-Usually this would involve pushing each branch to each repo in turn,
-but actually Git allows pushing to multiple repos in one go.
-
-If in doubt about what git is doing when you run these commands, just
-edit ``.git/config`` (`git-config(1)`_) and see what it's put there.
-
-
-Remotes
-=======
-
-Suppose your git remotes are set up like this::
-
-    git remote add github git@github.com:muccg/my-project.git
-    git remote add bb git@bitbucket.org:ccgmurdoch/my-project.git
-
-The ``origin`` remote probably points to one of these URLs.
+````
+```
+git remote add origin git@github.com:deinBenutzername/deinProjekt.git
+```
+````
 
 
-Remote Push URLs
-================
+2. Zweite Push-URL hinzufügen
+Anschließend fügst du eine zweite URL zum gleichen Remote hinzu, die ebenfalls beim Pushen verwendet werden soll:
 
-To set up the push URLs do this::
+bash
+Copy code
+git remote set-url --add --push origin git@bitbucket.org:deinBenutzername/deinProjekt.git
+Mit diesem Befehl wird origin so konfiguriert, dass beim Ausführen von git push automatisch zu beiden URLs gepusht wird.
 
-    git remote set-url --add --push origin git@github.com:muccg/my-project.git
-    git remote set-url --add --push origin git@bitbucket.org:ccgmurdoch/my-project.git
+3. Überprüfen der Konfiguration
+Überprüfe deine Konfiguration, um sicherzustellen, dass beide URLs korrekt eingerichtet sind:
 
-It will change the ``remote.origin.pushurl`` config entry. Now pushes
-will send to both of these destinations, rather than the fetch URL.
+bash
+Copy code
+git remote -v
+Du solltest jetzt sehen, dass origin sowohl für Fetch als auch für Push korrekt eingestellt ist. Fetch zeigt auf GitHub, und Push sollte beide URLs anzeigen.
 
-Check it out by running::
+4. Änderungen pushen
+Jetzt, wo alles eingerichtet ist, kannst du Änderungen an beide URLs gleichzeitig pushen, indem du einfach:
 
-    git remote show origin
+bash
+Copy code
+git push origin main  # Ersetze 'main' durch den Namen deines Hauptbranches, wenn er anders ist
+verwendest. Git wird die Änderungen dann sowohl zu GitHub als auch zu Bitbucket senden.
 
+5. Pullen von Änderungen
+Beim Pullen von Änderungen wirst du normalerweise von der Haupt-URL (GitHub in diesem Fall) ziehen:
 
-Per-branch
-==========
+bash
+Copy code
+git pull origin main  # Stellt sicher, dass du die neuesten Änderungen von der Hauptquelle hast
+Wenn du sicherstellen möchtest, dass du die neuesten Änderungen von beiden Seiten hast, kannst du abwechselnd von jeder URL fetchen und mergen, indem du spezifische Branch-Namen von jeder Remote verwendest.
 
-A branch can push and pull from separate remotes. This might be useful
-in rare circumstances such as maintaining a fork with customizations
-to the upstream repo. If your branch follows ``github`` by default::
+6. Änderungen fetchen
+Manchmal möchtest du vielleicht nur die neuesten Änderungen sehen, ohne sie direkt in deinen Branch zu mergen:
 
-    git branch --set-upstream-to=github next_release
-
-(That command changed ``branch.next_release.remote``.)
-
-Then git allows branches to have multiple ``branch.<name>.pushRemote``
-entries. You must edit the ``.git/config`` file to set them.
-
-
-Pull Multiple
-=============
-
-You can't pull from multiple remotes at once, but you can fetch from
-all of them::
-
-    git fetch --all
-
-Note that fetching won't update your current branch (that's why
-``git-pull`` exists), so you have to merge -- fast-forward or
-otherwise.
-
-For example, this will octopus merge the branches if the remotes got
-out of sync::
-
-    git merge github/next_release bb/next_release
-
-
-
-References
-==========
-
-* `git-config(1)`_
-* `git-remote(1)`_
-* `git-branch(1)`_
-
-.. _`git-config(1)`: https://www.kernel.org/pub/software/scm/git/docs/git-config.html
-.. _`git-remote(1)`: https://www.kernel.org/pub/software/scm/git/docs/git-remote.html
-.. _`git-branch(1)`: https://www.kernel.org/pub/software/scm/git/docs/git-branch.html
+bash
+Copy code
+git fetch origin  # Holt alle neuen Änderungen von GitHub
 
 Aliases u dont wann'a miss
 -----------------------------
