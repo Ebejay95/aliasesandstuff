@@ -1,46 +1,47 @@
-Git Remote hinzufügen oder klonen
+Add or clone Git Remote
 -----------------------------
 
-Fuer alle die nano lieber als vim oder vi moegen:
+For everyone who prefers nano to vim or vi:
 
 ````
 git config --global core.editor "nano"
 ````
 
-Wenn bereits lokal ein Ordner existiert definierst du einen Remote-Namen, den du verwenden möchtest (hier als origin bezeichnet), und fügst die erste URL hinzu:
+If a folder already exists locally, define a remote name you want to use (here called origin) and add the first URL:
 
 ````
 git init
 git remote add origin [vogshere-url]
 ````
 
-oder du klonst das Ding frisch als leeres Repo von vogshere der ordner sollte noch nicht existieren:
+or you clone the thing fresh as an empty repo from vogshere the folder shouldn't exist yet:
 
 ````
 git clone [vogshere-url] [folder-name]
 cd [folder-name]
 ````
 
-Zweite Push-URL hinzufügen
+Add second push URL
 -----------------------------
-Anschließend fügst du eine zweite URL zum gleichen Remote hinzu, die ebenfalls beim Pushen verwendet werden soll: (ACHTUNG! - die eigenliche origin muss hier nochmal hinzugefuegt werden - komisch, iss aber so)
-Noch ein Wort zu den origin Namen: Nutze fuer vogshere am besten einfach den default (origin) und fuer dein github einen gleichbleibden anderen bezeichner. Dann kannst du die pull push commands gleich vereinfachen in allgemeinen aliassen
+Then add a second URL to the same remote, which should also be used when pushing: (ATTENTION! - the actual origin has to be added here again - strange, but that's how it is)
+One more word about the origin names: It's best to just use the default (origin) for vogshere and a constant, different identifier for your github. Then you can simplify the pull push commands into general aliases
+
 ````
 git remote add [github-origin] [github-url]
 git remote set-url --add --push origin [vogshere-url]
 git remote set-url --add --push origin [github-url]
 ````
 
-Mit diesem Befehl wird origin so konfiguriert, dass beim Ausführen von git push automatisch zu beiden URLs gepusht wird.
-Pruefe das mit:
+This command configures origin to automatically push to both URLs when running git push.
+Check this with:
 
 ````
 git remote -v
 ````
 
-Überprüfen der Konfiguration
+Check the configuration
 -----------------------------
-Überprüfe deine Konfiguration, um sicherzustellen, dass beide URLs korrekt eingerichtet sind:
+Check your configuration to make sure both URLs are set up correctly:
 
 ````
 git remote -v:
@@ -53,19 +54,19 @@ origin [github-url] (push)
 
 ````
 
-Du solltest jetzt sehen, dass origin sowohl für Fetch als auch für Push korrekt eingestellt ist. Fetch zeigt auf GitHub, und Push sollte beide URLs anzeigen.
+You should now see that origin is set correctly for both fetch and push. Fetch points to GitHub, and Push should show both URLs.
 
-Änderungen pushen
+Push changes
 -----------------------------
-Jetzt, wo alles eingerichtet ist, kannst du Änderungen an beide URLs gleichzeitig pushen, indem du einfach:
+Now that everything is set up, you can push changes to both URLs at the same time by simply:
 
 ````
 git push origin master
 ````
 
-Pullen von Änderungen
+Pulling changes
 -----------------------------
-Beim Pullen von Änderungen wirst du normalerweise von der Haupt-URL  ziehen:
+When pulling changes you will typically pull from the main URL:
 
 ````
 git fetch --all
@@ -75,8 +76,11 @@ git merge [github-origin]/master
 
 Aliases for git
 -----------------------------
+
+````
 alias push="git push origin master"
 alias pull="git fetch --all && git merge origin/master && git merge [github-origin]/master"
+````
 
 Aliases u dont wann'a miss
 -----------------------------
