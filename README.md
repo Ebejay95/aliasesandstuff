@@ -1,53 +1,47 @@
-1. Git Remote hinzufügen
+Git Remote hinzufügen
 -----------------------------
 
 Zuerst definierst du einen Remote-Namen, den du verwenden möchtest (hier als origin bezeichnet), und fügst die erste URL hinzu:
 
 ````
-```
 git remote add origin git@github.com:deinBenutzername/deinProjekt.git
-```
 ````
 
-
-2. Zweite Push-URL hinzufügen
+Zweite Push-URL hinzufügen
+-----------------------------
 Anschließend fügst du eine zweite URL zum gleichen Remote hinzu, die ebenfalls beim Pushen verwendet werden soll:
 
-bash
-Copy code
+````
 git remote set-url --add --push origin git@bitbucket.org:deinBenutzername/deinProjekt.git
+````
+
 Mit diesem Befehl wird origin so konfiguriert, dass beim Ausführen von git push automatisch zu beiden URLs gepusht wird.
 
-3. Überprüfen der Konfiguration
+Überprüfen der Konfiguration
+-----------------------------
 Überprüfe deine Konfiguration, um sicherzustellen, dass beide URLs korrekt eingerichtet sind:
 
-bash
-Copy code
+````
 git remote -v
+````
+
 Du solltest jetzt sehen, dass origin sowohl für Fetch als auch für Push korrekt eingestellt ist. Fetch zeigt auf GitHub, und Push sollte beide URLs anzeigen.
 
-4. Änderungen pushen
+Änderungen pushen
+-----------------------------
 Jetzt, wo alles eingerichtet ist, kannst du Änderungen an beide URLs gleichzeitig pushen, indem du einfach:
 
-bash
-Copy code
-git push origin main  # Ersetze 'main' durch den Namen deines Hauptbranches, wenn er anders ist
-verwendest. Git wird die Änderungen dann sowohl zu GitHub als auch zu Bitbucket senden.
+````
+git push origin master
+````
 
-5. Pullen von Änderungen
-Beim Pullen von Änderungen wirst du normalerweise von der Haupt-URL (GitHub in diesem Fall) ziehen:
+Pullen von Änderungen
+-----------------------------
+Beim Pullen von Änderungen wirst du normalerweise von der Haupt-URL  ziehen:
 
-bash
-Copy code
-git pull origin main  # Stellt sicher, dass du die neuesten Änderungen von der Hauptquelle hast
-Wenn du sicherstellen möchtest, dass du die neuesten Änderungen von beiden Seiten hast, kannst du abwechselnd von jeder URL fetchen und mergen, indem du spezifische Branch-Namen von jeder Remote verwendest.
-
-6. Änderungen fetchen
-Manchmal möchtest du vielleicht nur die neuesten Änderungen sehen, ohne sie direkt in deinen Branch zu mergen:
-
-bash
-Copy code
-git fetch origin  # Holt alle neuen Änderungen von GitHub
+````
+git pull origin master
+````
 
 Aliases u dont wann'a miss
 -----------------------------
