@@ -82,6 +82,14 @@ alias push="git push origin master"
 alias pull="git fetch --all && git merge origin/master && git merge [github-origin]/master"
 ````
 
+Yeah Submodules
+-----------------------------
+````
+git submodule add https://github.com/Ebejay95/libft.git libft
+git submodule init
+git submodule update
+````
+
 Aliases u dont wann'a miss
 -----------------------------
 
@@ -101,6 +109,7 @@ alias test='make re && make clean && echo
 "###########################################\n\n\n" && ./bin'
 
 alias push="git push origin && git push ebejay"
+alias submodule="git submodule update --init --remote"
 
 Valgrind Tester
 -----------------------------
