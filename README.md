@@ -90,6 +90,23 @@ git submodule init
 git submodule update
 ````
 
+Procedure for project retry (change remote origin while keepint commit history
+-----------------------------
+Remove the "old" vogshere origin
+````
+git remote rm origin
+````
+Add the new one as origin
+````
+git remote add origin [new vogshere url]
+````
+Commit to the still existing history
+````
+git add .
+git comit -m "[YOUR MESSAGE]"
+git push --set-upstream origin master 
+````
+
 Aliases u dont wann'a miss
 -----------------------------
 
