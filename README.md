@@ -25,6 +25,7 @@ Add second push URL
 -----------------------------
 Then add a second URL to the same remote, which should also be used when pushing: (ATTENTION! - the actual origin has to be added here again - strange, but that's how it is)
 One more word about the origin names: It's best to just use the default (origin) for vogshere and a constant, different identifier for your github. Then you can simplify the pull push commands into general aliases
+BE CAREFULL WITH GITHUB SETTING MAIN NOT MASTER BRANCH!!!
 
 ````
 git remote add [github-origin] [github-url]
@@ -70,8 +71,8 @@ When pulling changes you will typically pull from the main URL:
 
 ````
 git fetch --all
-git merge origin/master
-git merge [github-origin]/master
+git merge origin/master --allow-unrelated-histories
+git merge [github-origin]/master --allow-unrelated-histories
 ````
 
 Aliases for git
