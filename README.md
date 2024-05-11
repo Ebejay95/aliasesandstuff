@@ -62,7 +62,7 @@ Push changes
 Now that everything is set up, you can push changes to both URLs at the same time by simply:
 
 ````
-git push origin master
+git push
 ````
 
 Pulling changes
@@ -90,6 +90,13 @@ git submodule add https://github.com/Ebejay95/libft.git libft
 git submodule init
 git submodule update
 ````
+add to your Makefile the automated update:
+
+````
+$(LIBFT_LIB):
+	@git submodule update --init --recursive --remote > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFT_DIR)
+````
 
 Procedure for project retry (change remote origin while keepint commit history)
 -----------------------------
@@ -106,6 +113,14 @@ Commit to the still existing history
 git add .
 git commit -m "[YOUR MESSAGE]"
 git push --set-upstream origin master 
+````
+
+Valgrind
+-----------------------------
+
+Recommended are devcontainers for VScode. A good one can be found here: https://github.com/Reptudn/42-docker-container
+````
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 ````
 
 Aliases u dont wann'a miss
