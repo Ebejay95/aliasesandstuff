@@ -123,6 +123,27 @@ Recommended are devcontainers for VScode. A good one can be found here: https://
 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose
 ````
 
+explicit for minishell readline functions
+create a readline.supp
+````
+{
+	leak readline
+	Memcheck:Leak
+	...
+	fun:readline
+}
+{
+	leak add_history
+	Memcheck:Leak
+	...
+	fun:add_history
+}
+````
+
+````
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --suppressions=readline.supp ./minishell 
+````
+
 Aliases u dont wann'a miss
 -----------------------------
 
